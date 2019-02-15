@@ -3,34 +3,21 @@
 <mapper namespace="com.hqu.lsw.admin.dao.AdminMapper">
 
     <sql id="Base_Column_List">
-        id,admin_name,admin_pwd,admin_email,login_time,login_ip
+        id,admin_name adminName,admin_pwd adminPwd,admin_email adminEmail
     </sql>
-    <select id="selectByNameAndPwd" parameterType="java.lang.String" resultType="com.hqu.lsw.pojo.AdminDO">
+    <select id="getByNameAndPwd" parameterType="java.util.Map" resultType="com.hqu.lsw.pojo.AdminDO">
         select
         <include refid="Base_Column_List"/>
         from t_admin
         where admin_name=#{adminName} and admin_pwd=#{adminPwd}
     </select>
-   <!-- <resultMap id="BaseResultMap" type="com.luckin.supermarket.bean.Admin" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="login_name" property="loginName" jdbcType="VARCHAR" />
-        <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
-    </resultMap>
-    <select id="selectByNameAndPwd" parameterType="java.lang.String" resultType="com.luckin.supermarket.bean.Admin">
-		select id,login_name,login_pwd from t_admin where login_name=#{userName} and login_pwd=#{password}
-	</select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+
+    <select id="getByPrimaryKey"  parameterType="java.lang.Long" resultType="com.hqu.lsw.pojo.AdminDO">
         select
         <include refid="Base_Column_List"/>
         from t_admin
-        where id = #{id,jdbcType=INTEGER}
+        where id = #{adminId}
     </select>
-
-
-    <update id="updateAdminInfo" parameterType="com.luckin.supermarket.bean.Admin">
-        UPDATE t_admin SET login_name=#{loginName},login_pwd=#{loginPwd}
-        WHERE id=#{id}
-    </update>-->
 </mapper>
 
 

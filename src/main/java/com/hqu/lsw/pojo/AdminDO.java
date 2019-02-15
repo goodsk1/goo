@@ -29,15 +29,7 @@ public class AdminDO {
      */
     private String adminEmail;
 
-    /**
-     * 登陆时间
-     */
-    private Date loginTime;
 
-    /**
-     * 登陆ip
-     */
-    private String loginIp;
 
     public Long getId() {
         return id;
@@ -71,21 +63,7 @@ public class AdminDO {
         this.adminEmail = adminEmail;
     }
 
-    public Date getLoginTime() {
-        return loginTime;
-    }
 
-    public void setLoginTime(Date loginTime) {
-        this.loginTime = loginTime;
-    }
-
-    public String getLoginIp() {
-        return loginIp;
-    }
-
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
 }
 
 
