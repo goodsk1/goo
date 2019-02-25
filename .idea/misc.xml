@@ -3,11 +3,13 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
+    <file type="web" url="file://E:/LSW/下载软件包/搜狗下载/ttp2-dyj-shop-master/ttp2-dyj-shop-master" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="E:/LSW/下载软件包/搜狗下载/ttp2-dyj-shop-master/ttp2-dyj-shop-master/pom.xml" />
       </list>
     </option>
   </component>

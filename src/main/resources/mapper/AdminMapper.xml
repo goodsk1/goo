@@ -18,6 +18,7 @@
         from t_admin
         where id = #{adminId}
     </select>
+
 </mapper>
 
 
