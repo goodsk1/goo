@@ -31,10 +31,28 @@
                 and t_manufactor.industry=#{industry}
             </if>
         </where>
-        limit #{},#{}
+        limit #{offset},#{pageSize}
     </select>
 
 
+    <select id="countByExample" parameterType="com.hqu.lsw.pojo.dto.ManufactorQueryPageDTO" resultType="java.lang.Long">
+        select COUNT(*)
+        from t_manufactor
+        <where>
+            <if test="nickName!=null and nickName!=''">
+                and t_manufactor.nick_name=#{nickName}
+            </if>
+            <if test="address!=null and address!=''">
+                and t_manufactor.address=#{address}
+            </if>
+            <if test="city!=null and city!=''">
+                and t_manufactor.city=#{city}
+            </if>
+            <if test="industry!=null and industry!=''">
+                and t_manufactor.industry=#{industry}
+            </if>
+        </where>
+    </select>
 </mapper>
 
 

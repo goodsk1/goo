@@ -1,11 +1,13 @@
 package com.hqu.lsw.pojo.dto;
 
+import com.hqu.lsw.pojo.ao.PageAO;
+
 /**
  * @Description 厂家分页条件查询DTO
  * @Author shengwei.liu@ luckincoffee.com
  * @Date 2019/2/16
  */
-public class ManufactorQueryPageDTO {
+public class ManufactorQueryPageDTO extends PageDTO {
 
 
     /**

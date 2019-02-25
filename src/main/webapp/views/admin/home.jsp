@@ -59,7 +59,7 @@
                data-options="plain:true,iconCls:'icon-grxxxg'" style="width: 150px;">积分管理</a>
         </div>
         <div title="合作厂家管理" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
-            <a href="javascript:openTab('厂家查询','admin/toManufactorList','icon-writeblog')" class="easyui-linkbutton"
+            <a href="javascript:openTab('厂家查询','manufactor/toManufactorList','icon-writeblog')" class="easyui-linkbutton"
                data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">厂家查询</a>
         </div>
     </div>
