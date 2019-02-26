@@ -24,6 +24,7 @@ public class ResultInfo {
      */
     private int status = RESULT_CODE_SUCCESS;
 
+
     /**
      * 返回状态描述
      */
@@ -226,5 +227,7 @@ public class ResultInfo {
         }
         return true;
     }
+
+
 }
 

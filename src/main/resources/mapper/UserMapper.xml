@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqu.lsw.small.dao.UserMapper">
+    <select id="getUser" parameterType="java.util.Map" resultType="com.hqu.lsw.pojo.bo.UserBO">
+  		select id  id,login_name  loginName,login_pwd  loginPwd, true_name  trueName,email  email,phone  phone,address  address from t_user where login_name=#{loginName} and login_pwd=#{loginPwd}
+  	</select>
+</mapper>
+
