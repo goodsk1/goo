@@ -31,7 +31,7 @@
                 and t_manufactor.industry=#{industry}
             </if>
         </where>
-        limit #{offset},#{pageSize}
+
     </select>
 
 

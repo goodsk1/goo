@@ -17,7 +17,7 @@ public interface ManufactorMapper {
      * @param manufactorQueryPageDTO 厂家查询条件封装对象
      * @return
      */
-    List<ManufactorBO> getManufactorList(ManufactorQueryPageDTO manufactorQueryPageDTO);
+    List<ManufactorBO> listManufactor(ManufactorQueryPageDTO manufactorQueryPageDTO);
 
     /**
      * 获取商家总数

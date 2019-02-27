@@ -33,7 +33,8 @@ public class ManufactorServiceImpl implements ManufactorService {
     @Override
     public PaginationResult<ManufactorBO> getManufactorList(ManufactorQueryPageDTO manufactorQueryPageDTO) {
         Long count = manufactorMapper.countByExample(manufactorQueryPageDTO);
-        List<ManufactorBO> manufactorBOList = manufactorMapper.getManufactorList(manufactorQueryPageDTO);
+        List<ManufactorBO> manufactorBOList = manufactorMapper.listManufactor(manufactorQueryPageDTO);
+        System.out.println("sssss");
         return new PaginationResult<>(count,manufactorBOList);
     }
 }

@@ -8,7 +8,7 @@ function openTab(text, url, icon) {
             title: text,
             closable: true,
             iconCls: icon,
-            content: "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='/" + url + "'></iframe>"
+            content: "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='/graduation/" + url + "'></iframe>"
             //url 远程加载所打开的url
         })
     }

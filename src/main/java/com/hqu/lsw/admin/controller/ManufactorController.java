@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Description 合作厂家相关操作Controller
- * @Author shengwei.liu@ luckincoffee.com
+ * @Author shengwei.liu@luckincoffee.com
  * @Date 2019/2/15
  */
 @Controller

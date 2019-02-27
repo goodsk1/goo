@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * @Description 用户Controller（小程序端）
- * @Author shengwei.liu@ luckincoffee.com
+ * @Author shengwei.liu@luckincoffee.com
  * @Date 2019/2/25
  */
 @Controller
