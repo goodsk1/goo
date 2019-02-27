@@ -44,6 +44,7 @@ public class AdminController {
 
     /**
      * 检查登陆
+     *
      * @param model
      * @param adminName
      * @param adminPwd
@@ -59,6 +60,7 @@ public class AdminController {
         if(admin != null){
             session.setAttribute("Admin",admin);
             session.setAttribute("adminId",admin.getId());
+            session.setAttribute("adminName",admin.getAdminName());
             return "redirect:toHome";
         }
         model.addAttribute("msg","用户名或密码错误");
@@ -67,6 +69,7 @@ public class AdminController {
 
     /**
      * 跳转后台主页面
+     *
      * @return
      */
     @RequestMapping("/toHome")
@@ -76,6 +79,7 @@ public class AdminController {
 
     /**
      * 退出登陆
+     *
      * @param request
      * @return
      */
@@ -87,6 +91,7 @@ public class AdminController {
 
     /**
      * 跳转管理员信息页面
+     *
      * @return
      */
     @RequestMapping("/toAdmininfo")
@@ -96,6 +101,7 @@ public class AdminController {
 
     /**
      * 加载管理员信息
+     *
      * @param request
      * @return
      */

@@ -1,11 +1,15 @@
 package com.hqu.lsw.admin.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.hqu.lsw.admin.dao.ManufactorMapper;
 import com.hqu.lsw.admin.service.ManufactorService;
 import com.hqu.lsw.pojo.PaginationResult;
 import com.hqu.lsw.pojo.bo.ManufactorBO;
 import com.hqu.lsw.pojo.dto.ManufactorQueryPageDTO;
+import com.hqu.lsw.pojo.dto.OperationLogDTO;
 import com.hqu.lsw.pojo.entity.ManufactorDO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,8 @@ import java.util.List;
  */
 @Service
 public class ManufactorServiceImpl implements ManufactorService {
+
+    protected Logger LOGGER = LoggerFactory.getLogger(ManufactorServiceImpl.class);
 
     /**
      * 厂家相关操作dao接口
@@ -47,4 +53,35 @@ public class ManufactorServiceImpl implements ManufactorService {
     public void addManufactor(ManufactorDO manufactorDO) {
         manufactorMapper.addManufactor(manufactorDO);
     }
+
+    /**
+     * 插入操作记录
+     *
+     * @param operationLogDTO
+     */
+    @Override
+    public void insertOperationLog(OperationLogDTO operationLogDTO) {
+        try{
+            manufactorMapper.insertOperationLog(operationLogDTO);
+        }catch (Exception e){
+            LOGGER.error("插入操作记录失败：operationLogDTO{}, {}", JSON.toJSON(operationLogDTO),e);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

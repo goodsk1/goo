@@ -7,7 +7,10 @@ import com.hqu.lsw.pojo.ResultInfo;
 import com.hqu.lsw.pojo.ao.ManufactorQueryPageAO;
 import com.hqu.lsw.pojo.bo.ManufactorBO;
 import com.hqu.lsw.pojo.dto.ManufactorQueryPageDTO;
+import com.hqu.lsw.pojo.dto.OperationLogDTO;
 import com.hqu.lsw.pojo.entity.ManufactorDO;
+import com.hqu.lsw.pojo.enums.FunctionTypeEnum;
+import com.hqu.lsw.pojo.enums.OperationEnum;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * @Description 合作厂家相关操作Controller
@@ -91,19 +97,36 @@ public class ManufactorController {
      */
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
-    public ResultInfo addManufactor(ManufactorDO manufactorDO){
+    public ResultInfo addManufactor(ManufactorDO manufactorDO,HttpSession session){
         if(manufactorDO == null){
             return ResultInfo.errorMessage("参数异常");
         }
         try{
             manufactorService.addManufactor(manufactorDO);
+            //插入操作记录
+            OperationLogDTO operationLogDTO = buildOperationLogDTO(OperationEnum.NEW.getIndex(),session);
+            manufactorService.insertOperationLog(operationLogDTO);
             return ResultInfo.successMessage("新增成功");
         }catch (Exception e){
             return ResultInfo.errorMessage(e.getMessage());
         }
     }
 
-
+    /**
+     * 构建操作记录dto
+     * @param index
+     * @param session
+     * @return
+     */
+    private OperationLogDTO buildOperationLogDTO(Integer index, HttpSession session){
+        OperationLogDTO operationLogDTO = new OperationLogDTO();
+        operationLogDTO.setCreateId((long)session.getAttribute("adminId"));
+        operationLogDTO.setCreateName(session.getAttribute("adminName").toString());
+        operationLogDTO.setCreateTime(new Date());
+        operationLogDTO.setFunctionType(FunctionTypeEnum.MANUFACTOR_INFO.getIndex());
+        operationLogDTO.setOperType(FunctionTypeEnum.getNameByIndex(index));
+        return operationLogDTO;
+    }
 }
 
 

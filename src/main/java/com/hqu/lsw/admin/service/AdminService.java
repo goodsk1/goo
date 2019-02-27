@@ -13,6 +13,7 @@ public interface AdminService {
 
     /**
      * 检查用户名和密码
+     *
      * @param map
      * @return
      */
@@ -20,6 +21,7 @@ public interface AdminService {
 
     /**
      * 获取管理员信息
+     *
      * @param adminId
      * @return
      */

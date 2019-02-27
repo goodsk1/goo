@@ -10,16 +10,18 @@ import java.util.Map;
 
 /**
  * @Description 管理员Service实现类
- * @Author shengwei.liu@ luckincoffee.com
+ * @Author shengwei.liu@luckincoffee.com
  * @Date 2019/1/22
  */
 @Service
 public class AdminServiceImpl implements AdminService {
+
     @Autowired
     private AdminMapper adminDao;
 
     /**
      * 检查用户名和密码
+     *
      * @param map
      * @return
      */
@@ -28,9 +30,9 @@ public class AdminServiceImpl implements AdminService {
         return adminDao.getByNameAndPwd(map);
     }
 
-
     /**
      * 获取管理员信息
+     *
      * @param adminId
      * @return
      */

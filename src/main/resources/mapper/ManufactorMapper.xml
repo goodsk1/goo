@@ -141,6 +141,28 @@
             </if>
         </trim>
     </insert>
+
+    <!--插入操作记录-->
+    <insert id="insertOperationLog" parameterType="com.hqu.lsw.pojo.dto.OperationLogDTO">
+        insert into t_oper_log(
+          table_primary_key,
+          oper_type,
+          create_id,
+          create_name,
+          create_time,
+          remark,
+          function_type
+        )
+        values (
+          #{tablePrimaryKey},
+          #{operType},
+          #{createId},
+          #{createName},
+          #{createTime},
+          #{remark},
+          #{functionType}
+        )
+    </insert>
 </mapper>
 
 
