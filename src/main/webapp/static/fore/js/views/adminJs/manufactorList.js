@@ -67,7 +67,6 @@ config.search = {
         },
         // 选填。表单提交完成后回调函数，一般用于数据处理，设置分页等。注意该函数处理完数据后需将处理数据返回
         onSuccess: function (result) {
-            initBtn();
             config.pagetable.pager.attr.total = result.data.total;
             return result.data.rows;
         },
@@ -149,12 +148,9 @@ config.pagetable = {
                 text: '手机号码'
             },
             {
-                name: 'loginName',
-                text: '登陆名'
-            },
-            {
-                name: 'city',
-                text: '所属城市'
+                name:'email',
+                text:'邮箱'
+
             }
         ],
         // 表格数据：数据对象数组
@@ -162,9 +158,6 @@ config.pagetable = {
     },
     pager: {
         attr: {
-            className: "spager",
-            name: "spager",
-            id: "spager",
             align: "left",
             position: "bottom",
             rows:30,
