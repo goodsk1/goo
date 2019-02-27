@@ -59,7 +59,7 @@ config.search = {
             // 选填。页面加载完成后提交表单，一般用于页面展示后显示第一页数据，默认false
             load: true
         },
-        data:{page:1,rows:30},
+        data: {page: 1, rows: 30},
         // 选填。表单提交前处理函数，一般用于增加自定义数据校验。返回true才会进行表单提交，不返回或返回false不提交表单
         onSubmit: function (formData) {
             console.log(formData);
@@ -110,6 +110,36 @@ config.search = {
         }
     }
 };
+
+config.btngroup = {
+    attr: {
+        className: 'left',
+        style: {}
+    },
+    items: [
+        {
+            tag: 'button',
+            text: '新建',
+            attr: {
+                className: '',
+                style: {},
+                disabled: false
+            },
+            onClick: function (data) {
+                this.text = "新建";
+                lv.open({
+                    // 打开窗口url
+                    url: luckyPath + 'manufactor/toAddView',
+                    // 弹窗宽度
+                    width: 1200,
+                    height: 600,
+                    name: "addManufactor"
+                });
+            }
+        }
+    ]
+
+};
 // 分页表格
 config.pagetable = {
     attr: {
@@ -148,8 +178,8 @@ config.pagetable = {
                 text: '手机号码'
             },
             {
-                name:'email',
-                text:'邮箱'
+                name: 'email',
+                text: '邮箱'
 
             }
         ],
@@ -160,9 +190,9 @@ config.pagetable = {
         attr: {
             align: "left",
             position: "bottom",
-            rows:30,
-            page:1,
-            total:0
+            rows: 30,
+            page: 1,
+            total: 0
         },
         // 分页切换回调函数
         onChange: function (pageNo) {

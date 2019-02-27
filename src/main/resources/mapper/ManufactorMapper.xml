@@ -8,7 +8,8 @@
         last_modified_time lastModifiedTime ,industry
     </sql>
 
-    <select id="listManufactor" parameterType="com.hqu.lsw.pojo.dto.ManufactorQueryPageDTO" resultType="com.hqu.lsw.pojo.bo.ManufactorBO">
+    <select id="listManufactor" parameterType="com.hqu.lsw.pojo.dto.ManufactorQueryPageDTO"
+            resultType="com.hqu.lsw.pojo.bo.ManufactorBO">
         select
         id id,
         nick_name nickName,
@@ -53,6 +54,93 @@
             </if>
         </where>
     </select>
+
+    <!--新增厂家信息记录-->
+    <insert id="addManufactor" parameterType="com.hqu.lsw.pojo.entity.ManufactorDO">
+        insert into t_manufactor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="creatorId != null">
+                creator_id,
+            </if>
+            <if test="creatorName != null">
+                creator_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastModifierId != null">
+                last_modifier_id,
+            </if>
+            <if test="lastModifiedTime != null">
+                last_modified_time,
+            </if>
+            <if test="lastModifierName != null">
+                last_modifier_name,
+            </if>
+            <if test="industry != null">
+                industry,
+            </if>
+            <if test="city!=null">
+                city,
+            </if>
+        </trim>
+        <trim prefix = "values (" suffix=")" suffixOverrides=",">
+            <if test="nickName != null">
+                #{nickName},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="creatorId != null">
+                #{creatorId},
+            </if>
+            <if test="creatorName != null">
+                #{creatorName},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="lastModifierId != null">
+                #{lastModifierId},
+            </if>
+            <if test="lastModifiedTime != null">
+                #{lastModifiedTime},
+            </if>
+            <if test="lastModifierName != null">
+                #{lastModifierName},
+            </if>
+            <if test="industry != null">
+                #{industry},
+            </if>
+            <if test="city!=null">
+                #{city},
+            </if>
+        </trim>
+    </insert>
 </mapper>
 
 

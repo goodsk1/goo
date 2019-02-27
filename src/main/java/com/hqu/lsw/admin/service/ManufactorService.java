@@ -3,6 +3,7 @@ package com.hqu.lsw.admin.service;
 import com.hqu.lsw.pojo.PaginationResult;
 import com.hqu.lsw.pojo.bo.ManufactorBO;
 import com.hqu.lsw.pojo.dto.ManufactorQueryPageDTO;
+import com.hqu.lsw.pojo.entity.ManufactorDO;
 
 import java.util.List;
 
@@ -20,5 +21,12 @@ public interface ManufactorService {
      * @return
      */
     PaginationResult<ManufactorBO> getManufactorList(ManufactorQueryPageDTO manufactorQueryPageDTO);
+
+    /**
+     * 新增厂家信息记录
+     * @param manufactorDO
+     * @return
+     */
+    void addManufactor(ManufactorDO manufactorDO);
 
 }

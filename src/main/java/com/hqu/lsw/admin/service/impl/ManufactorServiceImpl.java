@@ -5,6 +5,7 @@ import com.hqu.lsw.admin.service.ManufactorService;
 import com.hqu.lsw.pojo.PaginationResult;
 import com.hqu.lsw.pojo.bo.ManufactorBO;
 import com.hqu.lsw.pojo.dto.ManufactorQueryPageDTO;
+import com.hqu.lsw.pojo.entity.ManufactorDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,16 @@ public class ManufactorServiceImpl implements ManufactorService {
     public PaginationResult<ManufactorBO> getManufactorList(ManufactorQueryPageDTO manufactorQueryPageDTO) {
         Long count = manufactorMapper.countByExample(manufactorQueryPageDTO);
         List<ManufactorBO> manufactorBOList = manufactorMapper.listManufactor(manufactorQueryPageDTO);
-        System.out.println("sssss");
         return new PaginationResult<>(count,manufactorBOList);
+    }
+
+    /**
+     * 新增厂家信息记录
+     * @param manufactorDO
+     * @return
+     */
+    @Override
+    public void addManufactor(ManufactorDO manufactorDO) {
+        manufactorMapper.addManufactor(manufactorDO);
     }
 }
