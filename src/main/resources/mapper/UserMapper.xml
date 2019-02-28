@@ -4,5 +4,32 @@
     <select id="getUser" parameterType="java.util.Map" resultType="com.hqu.lsw.pojo.bo.UserBO">
   		select id  id,login_name  loginName,login_pwd  loginPwd, true_name  trueName,email  email,phone  phone,address  address from t_user where login_name=#{loginName} and login_pwd=#{loginPwd}
   	</select>
+
+    <update id="updateUserInfo" parameterType="com.hqu.lsw.pojo.bo.UserBO">
+        update t_user
+        <set>
+            <if test="loginName != null">
+                login_name = #{loginName},
+            </if>
+            <if test="loginPwd != null">
+                login_pwd = #{loginPwd},
+            </if>
+            <if test="trueName != null">
+                true_name = #{trueName},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
 </mapper>
 

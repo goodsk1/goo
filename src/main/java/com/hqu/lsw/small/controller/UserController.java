@@ -38,4 +38,10 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public Result updateData(String name,boolean sex,String phone){
+        return null;
+    }
+
 }

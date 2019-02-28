@@ -136,10 +136,46 @@ config.btngroup = {
                     name: "addManufactor"
                 });
             }
+        },
+        {
+            tag: 'button',
+            text: '删除',
+            attr: {
+                className: '',
+                style: {},
+                disabled: false
+            },
+            onClick: function () {
+                this.text = "删除";
+                var obj = config.pagetable.table.attr.checkResult.id;
+                if (!obj) {
+                    lv.alert("请选择对应配置项! ");
+                    return false;
+                }
+                lv.confirm('是否确认删除？', function () {
+                    $.ajax({
+                        url: luckyPath + '/manufactor/deleteManufactor?id=' + obj,
+                        type: 'POST',
+                        error: function (xhr, status, err) {
+                            lv.alert("系统异常！");
+                        },
+                        success: function (result) {
+                            if (result.status == 0) {
+                                lv.alert("删除成功");
+                                window.location.href = window.location.href;
+                            } else {
+                                lv.alert(result.statusInfo);
+                            }
+                        }
+                    });
+                });
+
+            }
         }
     ]
 
 };
+initBtn();
 // 分页表格
 config.pagetable = {
     attr: {
@@ -161,7 +197,10 @@ config.pagetable = {
             // 数据列表中哪个属性值作为选中依据，设置唯一属性名
             checkField: 'id',
             // 选择记录集合：选中完整行记录对象全部存放于此。配置单选时，为一个对象，配置多选时，为一个数组
-            checkResult: []
+            checkResult: {}
+        },
+        onCheck:function(rowData){
+            config.btngroup.items[1].attr.disabled = false;
         },
         // 定义表格数据列表
         items: [
@@ -201,6 +240,11 @@ config.pagetable = {
 };
 
 
+
+function initBtn() {
+    config.btngroup.items[1].attr.disabled = true;
+    //config.btngroup.items[2].attr.disabled = true;
+}
 // 启动框架
 window.lv.start({
     // 选填。配置项填充div的id值，默认 lv-view

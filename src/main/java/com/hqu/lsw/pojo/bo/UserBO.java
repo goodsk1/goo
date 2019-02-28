@@ -45,6 +45,11 @@ public class UserBO {
      */
     private String address;
 
+    /**
+     * 性别
+     */
+    private Integer sex;
+
     public Integer getId() {
         return id;
     }
@@ -100,4 +105,5 @@ public class UserBO {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }

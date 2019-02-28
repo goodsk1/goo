@@ -39,4 +39,11 @@ public interface ManufactorService {
      */
     void insertOperationLog(OperationLogDTO operationLogDTO);
 
+    /**
+     * 删除厂家信息
+     * @param id
+     * @return
+     */
+    Long deleteManufactor(Long id);
+
 }

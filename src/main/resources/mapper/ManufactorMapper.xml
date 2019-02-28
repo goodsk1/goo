@@ -18,7 +18,7 @@
         email,
         industry
         from t_manufactor
-        <where>
+       where flag = 1
             <if test="nickName!=null and nickName!=''">
                 and t_manufactor.nick_name=#{nickName}
             </if>
@@ -31,8 +31,6 @@
             <if test="industry!=null and industry!=''">
                 and t_manufactor.industry=#{industry}
             </if>
-        </where>
-
     </select>
 
 
@@ -163,6 +161,13 @@
           #{functionType}
         )
     </insert>
+
+    <!--删除厂家信息，逻辑删除-->
+    <update id="deleteManufactor" parameterType="java.lang.Long">
+        update t_manufactor
+        set flag = 2
+        where id = #{id}
+    </update>
 </mapper>
 
 

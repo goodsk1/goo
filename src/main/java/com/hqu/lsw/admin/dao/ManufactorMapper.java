@@ -44,6 +44,13 @@ public interface ManufactorMapper {
      * @param operationLogDTO
      */
     void insertOperationLog(OperationLogDTO operationLogDTO);
+
+    /**
+     * 删除厂家信息
+     * @param id
+     * @return
+     */
+    Long deleteManufactor(Long id);
 }
 
 

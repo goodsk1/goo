@@ -67,6 +67,15 @@ public class ManufactorServiceImpl implements ManufactorService {
             LOGGER.error("插入操作记录失败：operationLogDTO{}, {}", JSON.toJSON(operationLogDTO),e);
         }
     }
+
+    /**
+     * 删除厂家信息
+     * @return
+     */
+    @Override
+    public Long deleteManufactor(Long id){
+        return manufactorMapper.deleteManufactor(id);
+    }
 }
 
 

@@ -127,6 +127,21 @@ public class ManufactorController {
         operationLogDTO.setOperType(FunctionTypeEnum.getNameByIndex(index));
         return operationLogDTO;
     }
+
+    /**
+     * 删除厂家信息
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/deleteManufactor",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultInfo deleteManufactor(Long id){
+        if(id == null){
+            return ResultInfo.errorMessage("参数错误");
+        }
+        manufactorService.deleteManufactor(id);
+        return ResultInfo.errorMessage("删除成功");
+    }
 }
 
 
