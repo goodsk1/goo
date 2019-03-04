@@ -47,7 +47,7 @@
                data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px;">信息修改</a>
         </div>
         <div title="会员管理" data-options="iconCls:'icon-bklb'" style="padding:10px">
-            <a href="javascript:openTab('会员管理','admin/user/goToUserList','icon-bklb')" class="easyui-linkbutton"
+            <a href="javascript:openTab('会员管理','auser/toUserList','icon-bklb')" class="easyui-linkbutton"
                data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">会员管理</a>
         </div>
         <div title="商品管理" data-options="iconCls:'icon-plgl'" style="padding:10px">

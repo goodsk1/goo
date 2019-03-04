@@ -30,6 +30,22 @@
         where id = #{id}
     </update>
 
+    <select id="selectUserinfoLimit" resultType="com.hqu.lsw.pojo.entity.UserDO" parameterType="java.util.Map">
+        select * from t_user u
+        <where>
+            <if test="userinfo.loginName!=null  and userinfo.loginName!='' ">
+                and u.login_name=#{userinfo.loginName}
+            </if>
+            <if test="userinfo.phone!=null  and userinfo.phone!='' ">
+                and u.phone=#{userinfo.phone}
+            </if>
+        </where>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
 
+    <select id="countUser" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(*)
+		from t_user
+	</select>
 </mapper>
 

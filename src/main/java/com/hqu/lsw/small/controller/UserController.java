@@ -3,6 +3,7 @@ package com.hqu.lsw.small.controller;
 import com.hqu.lsw.pojo.Result;
 import com.hqu.lsw.pojo.bo.UserBO;
 import com.hqu.lsw.small.service.UserService;
+import com.hqu.lsw.util.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,9 @@ public class UserController {
         map.put("loginName",loginName);
         map.put("loginPwd",loginPwd);
         UserBO userBO = userService.getUser(map);
+        String token = Token.genetateToken();
         if(userBO != null){
-            return Result.success(200,"登陆成功","haha");
+            return Result.success(200,"登陆成功",token);
         }
         return Result.fail(300,"登陆错误");
 

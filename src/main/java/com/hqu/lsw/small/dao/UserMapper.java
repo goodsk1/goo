@@ -2,7 +2,9 @@ package com.hqu.lsw.small.dao;
 
 import com.hqu.lsw.pojo.bo.UserBO;
 import com.hqu.lsw.pojo.dto.UserDTO;
+import com.hqu.lsw.pojo.entity.UserDO;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +21,19 @@ public interface UserMapper {
      */
     UserBO getUser(Map<Object,Object> map);
 
+    /**
+     * 分页查询用户
+     * @param map
+     * @return
+     */
+    List<UserDO> selectUserinfoLimit(Map<Object, Object> map);
 
+    /**
+     * 获取用户数量
+     * @param map
+     * @return
+     */
+    int countUser(Map<Object, Object> map);
 
 
 

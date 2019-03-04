@@ -1,14 +1,6 @@
 var integralModule = angular.module("adminUserinfoApp", []);
 integralModule.controller("adminUserinfoCtrl", function ($http, $scope) {
     initBind($http, $scope);
-    //初始化时间
-    lay('#version').html('-v' + laydate.v);
-    //执行一个laydate实例
-    laydate.render({
-        elem: '#uResgistdate' //指定元素
-    });
-
-
     $scope.processParams = function (data) {
         var params = [];
         for (var p in data) {
@@ -34,15 +26,14 @@ function initBind($http, $scope) {
         var params = getDate();
         $http({
             method: 'POST',
-            url: '/admin/user/updateUserinfoById',
+            url: '/auser/modifyUserinfo',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             data: params,
             transformRequest: $scope.processParams
         }).success(function (result) {
-            result = $.parseJSON(result);
-            if (result.errCode = '000000') {
+            if (result.msg == "成功") {
                 swal("修改成功!", "success");
                 $('#personSubCouponModal').modal('hide');
                 createTable();
@@ -57,7 +48,7 @@ function initBind($http, $scope) {
     $('#table_id_example').on('click', '.update', function () {
         var params = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/user/showUpdateUserinfoModal',
+            url: '/auser/showUpdateUserinfoModal',
             data: {
                 "uId": params
             },
@@ -92,7 +83,7 @@ function initBind($http, $scope) {
             closeOnConfirm: false,
         }, function () {
             $.ajax({
-                url: '/admin/user/delUserinfoById',
+                url: '/auser/deleteUser',
                 data: {
                     "uId": params
                 },
@@ -112,23 +103,13 @@ function initBind($http, $scope) {
     });
 
     function getDate() {
-        var uSexVal;
-        var obj1 = document.getElementsByName("uSex");
-        for (var i = 0; i < obj1.length; i++) {
-            if (obj1[i].checked) {
-                uSexVal = obj1[i].value;
-            }
-        }
         return {
-            uId: $("#uId").val(),
-            uUsername: $("#uUsernameTwo").val(),
-            uPassword: $("#uPassword").val(),
-            uMoney: $("#uMoney").val(),
-            uPhone: $("#uPhoneTwo").val(),
-            uEmail: $("#uEmail").val(),
-            uSex: uSexVal,
-            uAddress: $("#uAddress").val(),
-            uResgistdate: $("#uResgistdate").val(),
+            id: $("#uId").val(),
+            loginName: $("#uUsernameTwo").val(),
+            loginPwd: $("#uPassword").val(),
+            phone: $("#uPhoneTwo").val(),
+            email: $("#uEmail").val(),
+            address: $("#uAddress").val(),
         }
     }
 }
@@ -145,12 +126,12 @@ function createTable() {
         searching: false,
         ordering: false,
         language: {
-            url: '/static/fore/js/china.json'
+            url: 'http://localhost:8080/graduation/views/china.json'
         },
         "aLengthMenu": [10],
         serverSide: true,
         ajax: {
-            url: "/admin/user/showUserList",
+            url: "http://localhost:8080/graduation/auser/listUsers",
             dataSrc: "data",
             data: {
                 "loginName": $("#uUsername").val(),
