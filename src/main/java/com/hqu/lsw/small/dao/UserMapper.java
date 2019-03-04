@@ -36,5 +36,25 @@ public interface UserMapper {
     int countUser(Map<Object, Object> map);
 
 
+    /**
+     *删除用户
+     * @param userId
+     * @return
+     */
+    int deleteByPrimaryKey(Integer userId);
+
+    /**
+     * 查询用户
+     * @param id
+     * @return
+     */
+    UserDO selectByPrimaryKey(Integer id);
+
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     */
+    int updateByPrimaryKeySelective(UserDO user);
 
 }

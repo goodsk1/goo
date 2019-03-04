@@ -62,6 +62,10 @@
             <a href="javascript:openTab('厂家查询','manufactor/toManufactorList','icon-writeblog')" class="easyui-linkbutton"
                data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">厂家查询</a>
         </div>
+        <div title="项目管理" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
+            <a href="javascript:openTab('新建项目','project/toProjectList','icon-writeblog')" class="easyui-linkbutton"
+               data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">新建项目</a>
+        </div>
     </div>
 </div>
 

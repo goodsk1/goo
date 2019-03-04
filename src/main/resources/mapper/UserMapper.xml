@@ -47,5 +47,41 @@
 		SELECT count(*)
 		from t_user
 	</select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  		delete from t_user where id = #{userId}
+  	</delete>
+
+    <select id="selectByPrimaryKey" resultType="com.hqu.lsw.pojo.entity.UserDO" parameterType="java.lang.Integer">
+  		select id,login_pwd,login_name,true_name,email,phone,address from t_user where id = #{id}
+  	</select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.hqu.lsw.pojo.entity.UserDO">
+        update t_user
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="loginName != null">
+                login_name = #{loginName},
+            </if>
+            <if test="loginPwd != null">
+                login_pwd = #{loginPwd},
+            </if>
+            <if test="trueName != null">
+                true_name = #{trueName},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>
 

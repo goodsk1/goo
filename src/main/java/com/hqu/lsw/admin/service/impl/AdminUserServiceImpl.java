@@ -33,4 +33,19 @@ public class AdminUserServiceImpl implements AdminUserService {
         pageUtil.setRecord(count);
         return pageUtil;
     }
+
+    @Override
+    public int deleteUser(int uId) {
+        return userMapper.deleteByPrimaryKey(uId);
+    }
+
+    @Override
+    public UserDO getUserinfo(int uId) {
+        return userMapper.selectByPrimaryKey(uId);
+    }
+
+    @Override
+    public int modifyUserinfo(UserDO user){
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
 }

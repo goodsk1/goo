@@ -26,7 +26,7 @@ function initBind($http, $scope) {
         var params = getDate();
         $http({
             method: 'POST',
-            url: '/auser/modifyUserinfo',
+            url: '/graduation/auser/modifyUserinfo',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -48,7 +48,7 @@ function initBind($http, $scope) {
     $('#table_id_example').on('click', '.update', function () {
         var params = $(this).attr('data-id');
         $.ajax({
-            url: '/auser/showUpdateUserinfoModal',
+            url: '/graduation/auser/showUpdateUserinfoModal',
             data: {
                 "uId": params
             },
@@ -83,7 +83,7 @@ function initBind($http, $scope) {
             closeOnConfirm: false,
         }, function () {
             $.ajax({
-                url: '/auser/deleteUser',
+                url: 'http://localhost:8080/graduation/auser/deleteUser',
                 data: {
                     "uId": params
                 },

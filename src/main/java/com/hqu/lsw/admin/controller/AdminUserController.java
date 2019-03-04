@@ -2,6 +2,7 @@ package com.hqu.lsw.admin.controller;
 
 import com.hqu.lsw.admin.service.AdminUserService;
 import com.hqu.lsw.pojo.DataTables;
+import com.hqu.lsw.pojo.Msg;
 import com.hqu.lsw.pojo.PageHelp;
 import com.hqu.lsw.pojo.entity.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,52 @@ public class AdminUserController {
         datatable.setRecordsFiltered(pageHelp.getRecord());
         datatable.setRecordsTotal(pageHelp.getRecord());
         return datatable;
+    }
+
+    /**
+     * 删除会员
+     * @param uId
+     * @return
+     */
+    @RequestMapping("deleteUser")
+    @ResponseBody
+    public Msg deleteUser(int uId) {
+        int a = adminUserService.deleteUser(uId);
+        if (a <= 0) {
+            return Msg.success().fail();
+        }
+        return Msg.success();
+    }
+
+    /**
+     * 展示更新会员模态框
+     * @param uId
+     * @return
+     */
+    @RequestMapping("showUpdateUserinfoModal")
+    @ResponseBody
+    public Msg getUserinfo(int uId) {
+        Msg msg = new Msg();
+        UserDO u = adminUserService.getUserinfo(uId);
+        if (u != null) {
+            msg.setTag(u);
+            msg.setMsg("成功");
+        }
+        return msg;
+    }
+
+    /**
+     * 更新会员信息
+     * @param user
+     * @return
+     */
+    @RequestMapping("modifyUserinfo")
+    @ResponseBody
+    public Msg modifyUserinfo(UserDO user){
+        int a = adminUserService.modifyUserinfo(user);
+        if (a <= 0){
+            return Msg.fail();
+        }
+        return Msg.success();
     }
 }

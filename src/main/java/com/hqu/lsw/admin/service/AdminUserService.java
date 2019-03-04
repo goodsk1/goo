@@ -19,4 +19,25 @@ public interface AdminUserService {
      * @return
      */
     PageHelp<UserDO> listUsers(Map<Object, Object> map, UserDO user);
+
+    /**
+     * 删除会员信息
+     * @param uId
+     * @return
+     */
+    int deleteUser(int uId);
+
+    /**
+     * 获取会员详细信息
+     * @param uId
+     * @return
+     */
+    UserDO getUserinfo(int uId);
+
+    /**
+     * 更新会员信息
+     * @param user
+     * @return
+     */
+    int modifyUserinfo(UserDO user);
 }
