@@ -168,6 +168,13 @@
         set flag = 2
         where id = #{id}
     </update>
+
+    <select id="getByNameAndPwd" parameterType="java.util.Map" resultType="com.hqu.lsw.pojo.AdminDO">
+        select
+        <include refid="Base_Column_List"/>
+        from t_admin
+        where admin_name=#{adminName} and admin_pwd=#{adminPwd}
+    </select>
 </mapper>
 
 

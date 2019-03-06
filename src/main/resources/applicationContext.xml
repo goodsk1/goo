@@ -36,7 +36,7 @@
 	<!-- 配置扫描器，将mybatis接口的实现加入到ioc容器中 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--扫描所有dao接口的实现，加入到ioc容器中 -->
-		<property name="basePackage" value="com.hqu.lsw.admin.dao,com.hqu.lsw.small.dao"></property>
+		<property name="basePackage" value="com.hqu.lsw.admin.dao,com.hqu.lsw.small.dao,com.hqu.lsw.business.dao"></property>
 
 	</bean>
 	
