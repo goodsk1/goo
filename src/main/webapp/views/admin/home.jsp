@@ -51,7 +51,7 @@
                data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">会员管理</a>
         </div>
         <div title="商品管理" data-options="iconCls:'icon-plgl'" style="padding:10px">
-            <a href="javascript:openTab('商品管理','admin/snackinfo/toSnackManage','icon-review')" class="easyui-linkbutton"
+            <a href="javascript:openTab('商品管理','snackinfo/toSnackManage','icon-review')" class="easyui-linkbutton"
                data-options="plain:true,iconCls:'icon-review'" style="width: 150px">商品管理</a>
         </div>
         <div title="积分管理" data-options="iconCls:'icon-grxx'" style="padding:10px">

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqu.lsw.admin.dao.SnackinfoMapper">
+    <resultMap id="BaseResultMap" type="com.hqu.lsw.pojo.entity.Snackinfo">
+        <id column="s_id" property="sId" jdbcType="INTEGER"/>
+        <result column="s_batch" property="sBatch" jdbcType="VARCHAR"/>
+        <result column="s_name" property="sName" jdbcType="VARCHAR"/>
+        <result column="s_price" property="sPrice" jdbcType="DOUBLE"/>
+        <result column="s_discount" property="sDiscount" jdbcType="VARCHAR"/>
+        <result column="s_pictureUrl" property="sPictureurl" jdbcType="VARCHAR"/>
+        <result column="s_brand" property="sBrand" jdbcType="VARCHAR"/>
+        <result column="s_place" property="sPlace" jdbcType="VARCHAR"/>
+        <result column="s_Imported" property="sImported" jdbcType="INTEGER"/>
+        <result column="s_score" property="sScore" jdbcType="INTEGER"/>
+        <result column="s_pDate" property="sPdate" jdbcType="DATE"/>
+        <result column="s_qDate" property="sQdate" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+        <result column="s_createDate" property="sCreatedate" jdbcType="DATE"/>
+        <result column="s_dese" property="sDese" jdbcType="VARCHAR"/>
+        <result column="s_number" property="sNumber" jdbcType="INTEGER"/>
+        <result column="s_type" property="sType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    s_id, s_batch, s_name, s_price, s_discount, s_pictureUrl, s_brand, s_place, s_Imported,
+    s_score, s_pDate, s_qDate, state, s_createDate, s_dese, s_number,s_type
+  </sql>
+
+    <select id="selectSnackinfoByPage" resultMap="BaseResultMap" parameterType="map">
+        select * from t_snackinfo o
+        <where>
+            <if test="sType != null and sType != '' ">
+                o.s_type = #{sType}
+            </if>
+            <if test="sName != null and sName != '' ">
+                and o.s_name like "%"#{sName}"%"
+            </if>
+            <if test="startDate !=null and startDate !='' ">
+                <![CDATA[AND o.s_createdate  >= #{startDate} ]]>
+            </if>
+            <if test="endDate !=null and endDate !='' ">
+                <![CDATA[AND o.s_createdate  <= #{endDate} ]]>
+            </if>
+        </where>
+        ORDER BY o.s_createdate DESC
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectSnackinfoNumber" resultType="java.lang.Integer" parameterType="map">
+        select count(*) from t_snackinfo o
+        <where>
+            <if test="sType != null and sType != '' ">
+                o.s_type = #{sType}
+            </if>
+            <if test="sName != null and sName != '' ">
+                and o.s_name like "%"#{sName}"%"
+            </if>
+            <if test="startDate !=null and startDate !='' ">
+                <![CDATA[AND o.s_createdate  >= #{startDate} ]]>
+            </if>
+            <if test="endDate !=null and endDate !='' ">
+                <![CDATA[AND o.s_createdate  <= #{endDate} ]]>
+            </if>
+        </where>
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

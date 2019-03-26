@@ -1,7 +1,6 @@
 package com.hqu.lsw.business.controller;
 
-import com.hqu.lsw.admin.service.ManufactorService;
-import com.hqu.lsw.business.dao.BusinessMapper;
+
 import com.hqu.lsw.business.service.BusinessService;
 import com.hqu.lsw.pojo.entity.ManufactorDO;
 import org.slf4j.Logger;

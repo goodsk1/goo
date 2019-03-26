@@ -20,15 +20,23 @@ integralModule.controller("adminSnackinfoCtrl", function ($http, $scope) {
 });
 
 function initBind($http, $scope) {
-    //搜索
+    /**
+     * 搜索函数
+     */
     $('#serchAdminSnackinfo').on('click', function () {
         createTable();
     })
-    //新建
+
+    /**
+     * 新建弹出模态框
+     */
     $('#newAdminSnackinfo').on('click', function () {
         showModal($('#newAdminSnackinfoModal'));
     })
-    //添加
+
+    /**
+     *添加新的零食信息
+     */
     $('#addAdminSnackinfo').on('click', function () {
         var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
         if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
@@ -76,7 +84,9 @@ function initBind($http, $scope) {
     })
 
 
-    //加载修改
+    /**
+     *拉取需要更新的零食信息绑定到模态框
+     */
     $('#table_id_example').on('click', '.update', function () {
         var params = $(this).attr('data-id');
         $.ajax({
@@ -108,7 +118,9 @@ function initBind($http, $scope) {
     })
 
 
-    //更新
+    /**
+     *更新零食信息
+     */
     $('#updateAdminSnackinfo').on('click', function () {
         var fileObj = document.getElementById("fileU").files[0]; // js 获取文件对象
         var formFile = new FormData();
@@ -133,7 +145,7 @@ function initBind($http, $scope) {
         formFile.append("sType", $("#sTypeU").val());
         var data = formFile;
         $.ajax({
-            url: '/admin/snackinfo/updateAdminSnack',
+            url: '/admin/snackinfo/modifySnackinfo',
             data: data,
             type: 'post',
             dataType: "json",
@@ -142,8 +154,7 @@ function initBind($http, $scope) {
             contentType: false, //必须
             success: function (result) {
                 $("#fileU").val("");
-                result = $.parseJSON(result);
-                if (result.errCode = '000000') {
+                if (result.msg == "成功") {
                     swal("修改成功!", "success");
                     $('#updateAdminSnackinfoModal').modal('hide');
                     createTable();
@@ -152,16 +163,15 @@ function initBind($http, $scope) {
                     $('#updateAdminSnackinfoModal').modal('hide');
                     createTable();
                 }
-            },
-            error: function () {
-                swal("没有权限!", "error");
             }
         });
 
 
     })
 
-    //删除
+    /**
+     *删除零食信息
+     */
     $('#table_id_example').on('click', '.delete', function () {
         var params = $(this).attr('data-id');
         swal({
@@ -195,6 +205,11 @@ function initBind($http, $scope) {
 
 }
 
+
+/**
+ * 构建零食信息表
+ * @type {null}
+ */
 var datatable = null;
 function createTable() {
     if (datatable != null) {
@@ -205,12 +220,12 @@ function createTable() {
         searching: false,
         ordering: false,
         language: {
-            url: '/static/fore/js/china.json'
+            url: '/graduation/static/fore/js/china.json'
         },
         "aLengthMenu": [5],
         serverSide: true,
         ajax: {
-            url: "/admin/snackinfo/listSnackinfos",
+            url: "/graduation/snackinfo/listSnackinfos",
             dataSrc: "data",
             data: {
                 "sType": $("#sType").val(),
@@ -223,7 +238,7 @@ function createTable() {
         columns: [
             {
                 data: 'sPictureurl', render: function (data, type, row) {
-                    return "<img height='60' width='60' src='/static/fore/image/" + data + "'/>";
+                    return "<img height='60' width='60' src='/graduation/static/fore/image/" + data + "'/>";
                 }
             },
             {data: 'sBatch'},
@@ -246,6 +261,12 @@ function createTable() {
     });
 }
 
+
+/**
+ * 展示零食信息的删除，修改模态框
+ * @param modal
+ * @param backdrop
+ */
 function showModal(modal, backdrop) {
     modal.modal({
         backdrop: backdrop || true,
