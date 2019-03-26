@@ -18,4 +18,11 @@ public interface AdminSnackinfoService {
      * @return
      */
     PageHelp<Snackinfo> listSnackinfoByPage(Map<Object, Object> map);
+
+    /**
+     * 删除零食信息
+     * @param sId   零食表主键id
+     * @return
+     */
+    int removeSnackinfo(int sId);
 }

@@ -184,7 +184,7 @@ function initBind($http, $scope) {
             closeOnConfirm: false,
         }, function () {
             $.ajax({
-                url: '/admin/snackinfo/deleteSnackinfo',
+                url: '/graduation/snackinfo/deleteSnackinfo',
                 data: {
                     "sId": params
                 },

@@ -64,6 +64,13 @@
             </if>
         </where>
     </select>
+
+
+    <delete id="deleteByPrimaryKey"  parameterType="java.lang.Integer">
+        delete from t_snackinfo
+        where s_id = #{sId,jdbcType=INTEGER}
+
+    </delete>
 </mapper>
 
 

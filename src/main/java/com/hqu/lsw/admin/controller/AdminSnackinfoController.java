@@ -2,6 +2,7 @@ package com.hqu.lsw.admin.controller;
 
 import com.hqu.lsw.admin.service.AdminSnackinfoService;
 import com.hqu.lsw.pojo.DataTables;
+import com.hqu.lsw.pojo.Msg;
 import com.hqu.lsw.pojo.PageHelp;
 import com.hqu.lsw.pojo.entity.Snackinfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,20 @@ public class AdminSnackinfoController {
         datatable.setRecordsFiltered(pageHelp.getRecord());
         datatable.setRecordsTotal(pageHelp.getRecord());
         return datatable;
+    }
+
+    /**
+     * 删除零食
+     * @param sId
+     * @return
+     */
+    @RequestMapping("deleteSnackinfo")
+    @ResponseBody
+    public Msg deleteSnackinfo(int sId) {
+        int a = adminSnackinfoService.removeSnackinfo(sId);
+        if (a <= 0) {
+            return Msg.fail();
+        }
+        return Msg.success();
     }
 }

@@ -32,4 +32,9 @@ public class AdminSnackinfoServiceImpl implements AdminSnackinfoService {
         pageUtil.setRecord(count);
         return pageUtil;
     }
+
+    @Override
+    public int removeSnackinfo(int sId) {
+        return snackinfoMapper.deleteByPrimaryKey(sId);
+    }
 }

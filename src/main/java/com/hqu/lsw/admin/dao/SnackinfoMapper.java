@@ -25,4 +25,11 @@ public interface SnackinfoMapper {
      * @return
      */
     int selectSnackinfoNumber(Map<Object, Object> map);
+
+    /**
+     *删除零食信息
+     * @param sId
+     * @return
+     */
+    int deleteByPrimaryKey(Integer sId);
 }
