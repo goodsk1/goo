@@ -32,4 +32,25 @@ public interface SnackinfoMapper {
      * @return
      */
     int deleteByPrimaryKey(Integer sId);
+
+    /**
+     * 更新零食信息
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKeySelective(Snackinfo record);
+
+    /**
+     * 查询零食信息
+     * @param sId
+     * @return
+     */
+    Snackinfo selectByPrimaryKey(Integer sId);
+
+    /**
+     * 新增零食信息
+     * @param record
+     * @return
+     */
+    int insertSelective(Snackinfo record);
 }

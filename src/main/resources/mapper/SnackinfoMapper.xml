@@ -71,6 +71,178 @@
         where s_id = #{sId,jdbcType=INTEGER}
 
     </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.hqu.lsw.pojo.entity.Snackinfo" >
+        update t_snackinfo
+        <set >
+            <if test="sBatch != null" >
+                s_batch = #{sBatch,jdbcType=VARCHAR},
+            </if>
+            <if test="sName != null" >
+                s_name = #{sName,jdbcType=VARCHAR},
+            </if>
+            <if test="sPrice != null" >
+                s_price = #{sPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="sDiscount != null" >
+                s_discount = #{sDiscount,jdbcType=VARCHAR},
+            </if>
+            <if test="sPictureurl != null" >
+                s_pictureUrl = #{sPictureurl,jdbcType=VARCHAR},
+            </if>
+            <if test="sBrand != null" >
+                s_brand = #{sBrand,jdbcType=VARCHAR},
+            </if>
+            <if test="sPlace != null" >
+                s_place = #{sPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="sImported != null" >
+                s_Imported = #{sImported,jdbcType=INTEGER},
+            </if>
+            <if test="sScore != null" >
+                s_score = #{sScore,jdbcType=INTEGER},
+            </if>
+            <if test="sPdate != null" >
+                s_pDate = #{sPdate,jdbcType=DATE},
+            </if>
+            <if test="sQdate != null" >
+                s_qDate = #{sQdate,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null" >
+                state = #{state,jdbcType=INTEGER},
+            </if>
+            <if test="sCreatedate != null" >
+                s_createDate = #{sCreatedate,jdbcType=DATE},
+            </if>
+            <if test="sDese != null" >
+                s_dese = #{sDese,jdbcType=VARCHAR},
+            </if>
+            <if test="sNumber != null" >
+                s_number = #{sNumber,jdbcType=INTEGER},
+            </if>
+            <if test="sType != null" >
+                s_type = #{sType,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where s_id = #{sId,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_snackinfo
+        where s_id = #{sId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertSelective" parameterType="com.hqu.lsw.pojo.entity.Snackinfo">
+        insert into t_snackinfo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sId != null" >
+                s_id,
+            </if>
+            <if test="sBatch != null" >
+                s_batch,
+            </if>
+            <if test="sName != null" >
+                s_name,
+            </if>
+            <if test="sPrice != null" >
+                s_price,
+            </if>
+            <if test="sDiscount != null" >
+                s_discount,
+            </if>
+            <if test="sPictureurl != null" >
+                s_pictureUrl,
+            </if>
+            <if test="sBrand != null" >
+                s_brand,
+            </if>
+            <if test="sPlace != null" >
+                s_place,
+            </if>
+            <if test="sImported != null" >
+                s_Imported,
+            </if>
+            <if test="sScore != null" >
+                s_score,
+            </if>
+            <if test="sPdate != null" >
+                s_pDate,
+            </if>
+            <if test="sQdate != null" >
+                s_qDate,
+            </if>
+            <if test="state != null" >
+                state,
+            </if>
+            <if test="sCreatedate != null" >
+                s_createDate,
+            </if>
+            <if test="sDese != null" >
+                s_dese,
+            </if>
+            <if test="sNumber != null" >
+                s_number,
+            </if>
+            <if test="sType != null" >
+                s_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="sId != null" >
+                #{sId,jdbcType=INTEGER},
+            </if>
+            <if test="sBatch != null" >
+                #{sBatch,jdbcType=VARCHAR},
+            </if>
+            <if test="sName != null" >
+                #{sName,jdbcType=VARCHAR},
+            </if>
+            <if test="sPrice != null" >
+                #{sPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="sDiscount != null" >
+                #{sDiscount,jdbcType=VARCHAR},
+            </if>
+            <if test="sPictureurl != null" >
+                #{sPictureurl,jdbcType=VARCHAR},
+            </if>
+            <if test="sBrand != null" >
+                #{sBrand,jdbcType=VARCHAR},
+            </if>
+            <if test="sPlace != null" >
+                #{sPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="sImported != null" >
+                #{sImported,jdbcType=INTEGER},
+            </if>
+            <if test="sScore != null" >
+                #{sScore,jdbcType=INTEGER},
+            </if>
+            <if test="sPdate != null" >
+                #{sPdate,jdbcType=DATE},
+            </if>
+            <if test="sQdate != null" >
+                #{sQdate,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=INTEGER},
+            </if>
+            <if test="sCreatedate != null" >
+                #{sCreatedate,jdbcType=DATE},
+            </if>
+            <if test="sDese != null" >
+                #{sDese,jdbcType=VARCHAR},
+            </if>
+            <if test="sNumber != null" >
+                #{sNumber,jdbcType=INTEGER},
+            </if>
+            <if test="sType != null" >
+                #{sType,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
 </mapper>
 
 

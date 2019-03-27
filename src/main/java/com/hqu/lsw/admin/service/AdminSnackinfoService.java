@@ -25,4 +25,25 @@ public interface AdminSnackinfoService {
      * @return
      */
     int removeSnackinfo(int sId);
+
+    /**
+     * 修改零食信息
+     * @param snackinfo
+     * @return
+     */
+    int modifySnackinfo(Snackinfo snackinfo);
+
+    /**
+     * 查询零食的详细信息
+     * @param sId
+     * @return
+     */
+    Snackinfo getSnackinfoById(int sId);
+
+    /**
+     * 添加零食信息
+     * @param snackinfo
+     * @return
+     */
+    int addSnackinfo(Snackinfo snackinfo);
 }

@@ -59,7 +59,7 @@ function initBind($http, $scope) {
         formFile.append("sType", $("#sType").val());
         var data = formFile;
         $.ajax({
-            url: '/admin/snackinfo/addSnackinfo',
+            url: '/graduation/snackinfo/addSnackinfo',
             data: data,
             type: 'post',
             dataType: "json",
@@ -90,7 +90,7 @@ function initBind($http, $scope) {
     $('#table_id_example').on('click', '.update', function () {
         var params = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/snackinfo/getSnackinfoById',
+            url: '/graduation/snackinfo/getSnackinfoById',
             data: {
                 "sId": params
             },
@@ -99,7 +99,7 @@ function initBind($http, $scope) {
             success: function (result) {
                 if (result.msg == "成功") {
                     $("#sIdU").val(result.tag.sId);
-                    $("#picUrlU").attr('src', "/static/fore/image/" + result.tag.sPictureurl);
+                    $("#picUrlU").attr('src', "/graduation/static/fore/image/" + result.tag.sPictureurl);
                     $("#sNameU").val(result.tag.sName);
                     $("#sPriceU").val(result.tag.sPrice);
                     $("#sDiscountU").val(result.tag.sDiscount);
@@ -145,7 +145,7 @@ function initBind($http, $scope) {
         formFile.append("sType", $("#sTypeU").val());
         var data = formFile;
         $.ajax({
-            url: '/admin/snackinfo/modifySnackinfo',
+            url: '/graduation/snackinfo/modifySnackinfo',
             data: data,
             type: 'post',
             dataType: "json",

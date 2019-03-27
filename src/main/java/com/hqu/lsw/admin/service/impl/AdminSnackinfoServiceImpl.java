@@ -37,4 +37,19 @@ public class AdminSnackinfoServiceImpl implements AdminSnackinfoService {
     public int removeSnackinfo(int sId) {
         return snackinfoMapper.deleteByPrimaryKey(sId);
     }
+
+    @Override
+    public  int modifySnackinfo(Snackinfo snackinfo){
+        return snackinfoMapper.updateByPrimaryKeySelective(snackinfo);
+    }
+
+    @Override
+    public  Snackinfo getSnackinfoById(int sId){
+        return snackinfoMapper.selectByPrimaryKey(sId);
+    }
+
+    @Override
+    public int addSnackinfo(Snackinfo snackinfo) {
+        return snackinfoMapper.insertSelective(snackinfo);
+    }
 }
