@@ -34,6 +34,7 @@ public class UploadController {
 
     @Autowired
     private IQRCodeService qRCodeService;
+
     /**
      * APP 合成二维码生成
      *
