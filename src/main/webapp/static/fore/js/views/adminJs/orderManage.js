@@ -68,7 +68,7 @@ function initBind($http, $scope, $timeout) {
     $('#table_id_example').on('click', '.update', function () {
         var params = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/order/getOrder',
+            url: '/graduation/admin/order/getOrder',
             data: {
                 "rId": params
             },
@@ -94,7 +94,7 @@ function initBind($http, $scope, $timeout) {
             + "&oPhone=" + $("#oPhoneT").val() + "&oAddress=" + $("#oAddressT").val();
         $http({
             method: 'POST',
-            url: '/admin/order/modifyOrder',
+            url: '/graduation/admin/order/modifyOrder',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -124,22 +124,22 @@ function initBind($http, $scope, $timeout) {
             showLoaderOnConfirm: true
         }, function () {
             $.ajax({
-                url: '/user/userOrderConfirm',
+                url: '/graduation/admin/order/sentOutGoods',
                 data: {
                     "id": params,
-                    "typeNum": 1
+                    "typeNum": 0
                 },
                 type: 'post',
                 dataType: "json",
                 success: function (result) {
                     //result = $.parseJSON(result);
                     if (result.msg =="成功") {
-                       /* if (result.data == -5) {
+                        if (result.code == 400) {
                             swal("商品数量不足!", "error");
-                        } else {*/
+                        } else {
                             swal("发货成功!", "success");
                             createTable();
-                        //}
+                        }
                     } else {
                         swal("发货失败!", "error");
                         createTable();
@@ -254,12 +254,12 @@ function createsnackTable(oId, oType) {
         searching: false,
         ordering: false,
         language: {
-            url: '/static/fore/js/china.json'
+            url: '/graduation/static/fore/js/china.json'
         },
         "aLengthMenu": [10],
         serverSide: true,
         ajax: {
-            url: "/shop/selectOrderSnack",
+            url: "/graduation/shop/selectOrderSnack",
             dataSrc: "data",
             data: {
                 "oId": oId,
@@ -269,7 +269,7 @@ function createsnackTable(oId, oType) {
         columns: [
             {
                 data: 'picUrl', render: function (data, type, row) {
-                    return "<img height='60' width='60' src='/static/fore/image/" + data + "'/>";
+                    return "<img height='60' width='60' src='/graduation/static/fore/image/" + data + "'/>";
                 }
             },
             {data: 'sName'},
@@ -301,12 +301,12 @@ function createTable() {
         searching: false,
         ordering: false,
         language: {
-            url: '/static/fore/js/china.json'
+            url: '/graduation/static/fore/js/china.json'
         },
         "aLengthMenu": [10],
         serverSide: true,
         ajax: {
-            url: "/admin/order/listOrders",
+            url: "/graduation/admin/order/listOrders",
             dataSrc: "data",
             data: {
                 "oId": $("#oId").val(),

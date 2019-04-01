@@ -1,5 +1,6 @@
 package com.hqu.lsw.admin.dao;
 
+import com.hqu.lsw.pojo.entity.DoSnack;
 import com.hqu.lsw.pojo.entity.Snackinfo;
 
 import java.util.List;
@@ -53,4 +54,11 @@ public interface SnackinfoMapper {
      * @return
      */
     int insertSelective(Snackinfo record);
+
+    /**
+     * 查询订单详情
+     * @param map
+     * @return
+     */
+    List<DoSnack> selectOrderDetail(Map<Object, Object> map);
 }

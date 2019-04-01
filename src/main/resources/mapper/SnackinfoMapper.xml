@@ -243,6 +243,12 @@
             </if>
         </trim>
     </insert>
+
+    <select id="selectOrderDetail" resultType="com.hqu.lsw.pojo.entity.DoSnack" parameterType="map">
+        select o.d_id as dId,o.o_num as oNum,o_money as oMoney,s.s_pictureUrl as picUrl,s.s_name as sName
+        from t_orderdetail o INNER JOIN t_snackinfo s on o.s_id=s.s_id
+        where o.o_id=#{oId} LIMIT #{pageStart},#{pageSize}
+  </select>
 </mapper>
 
 

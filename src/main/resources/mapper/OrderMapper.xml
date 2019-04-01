@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqu.lsw.admin.dao.OrderMapper">
+
+    <resultMap id="BaseResultMapTwo" type="com.hqu.lsw.pojo.entity.DoMyOrder">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="o_id" property="oId" jdbcType="VARCHAR"/>
+        <result column="u_id" property="uId" jdbcType="INTEGER"/>
+        <result column="e_id" property="eId" jdbcType="INTEGER"/>
+        <result column="o_time" property="oTime" jdbcType="DATE"/>
+        <result column="o_type" property="oType" jdbcType="INTEGER"/>
+        <result column="r_id" property="rId" jdbcType="INTEGER"/>
+        <result column="o_name" property="oName" jdbcType="VARCHAR"/>
+        <result column="o_phone" property="oPhone" jdbcType="VARCHAR"/>
+        <result column="o_address" property="oAddress" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="countAdminOrder" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(*)
+        from t_order o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
+        <where>
+            <if test="oId != null and oId != '' ">
+                and o.o_id=#{oId}
+            </if>
+            <if test="oTimeStart !=null and oTimeStart !='' ">
+                <![CDATA[AND o.o_time  >= #{oTimeStart} ]]>
+            </if>
+            <if test="oTimeEnd !=null and oTimeEnd !='' ">
+                <![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectAdminOrderLimit" resultType="com.hqu.lsw.pojo.entity.DoAdminOrder" parameterType="java.util.Map">
+        SELECT  o.id AS id,o.o_id AS oId,o.u_id as uId,o.e_id as eId,
+        o.o_time as oTime,o.o_type as oType, r.r_id as rId,
+        r.o_name as oName,r.o_phone as oPhone ,r.o_address as oAddress,
+        u.login_name as uUsername
+        from t_order o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
+        LEFT JOIN t_user u on u.id=o.u_id
+        <where>
+            <if test="oId != null and oId != '' ">
+                and o.o_id=#{oId}
+            </if>
+            <if test="startDate !=null and startDate !='' ">
+                <![CDATA[AND o.start_date  >= #{startDate} ]]>
+            </if>
+            <if test="oTimeEnd !=null and oTimeEnd !='' ">
+                <![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
+            </if>
+        </where>
+        ORDER BY o.o_type ,o.o_time DESC LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.hqu.lsw.pojo.entity.Order">
+        update t_order
+        <set>
+            <if test="oId != null">
+                o_id = #{oId,jdbcType=VARCHAR},
+            </if>
+            <if test="uId != null">
+                u_id = #{uId,jdbcType=INTEGER},
+            </if>
+            <if test="eId != null">
+                e_id = #{eId,jdbcType=INTEGER},
+            </if>
+            <if test="oTime != null">
+                o_time = #{oTime,jdbcType=DATE},
+            </if>
+            <if test="oType != null">
+                o_type = #{oType,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectPushSnackNum" parameterType="java.lang.Integer" resultType="com.hqu.lsw.pojo.entity.OrderDetail">
+		SELECT d_id as dId, o_Id as oId, s_id as sId, o_num as oNum ,o_money AS oMoney
+		from t_orderdetail o where o_id in
+		(SELECT o_id from t_order where id=#{id});
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
