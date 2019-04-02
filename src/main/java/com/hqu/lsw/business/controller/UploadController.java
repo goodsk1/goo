@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,6 +103,86 @@ public class UploadController {
         data.put("qrcode_path", qrcode_path);
         data.put("accessKey", "13598992");
         data.put("shortUrl", urltxt);
+        jsonResult.setData(data);
+        jsonResult.setMeg("生成成功");
+        jsonResult.setRes(1);
+
+        return jsonResult;
+    }
+
+    /**
+     * 二维码下载
+     *
+     * @param qrcode_path
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/download")
+    public void downloadFile(@RequestParam(value = "qrcode_path", required = true) String qrcode_path,
+                             HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String destUrl = qrcode_path;
+        // 建立链接
+        URL url = new URL(destUrl);
+        HttpURLConnection httpUrl = (HttpURLConnection) url.openConnection();
+        // 连接指定的资源
+        httpUrl.connect();
+        // 获取网络输入流
+        BufferedInputStream bis = new BufferedInputStream(httpUrl.getInputStream());
+
+        response.setContentType("application/x-msdownload");
+        response.setHeader("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(new Date().getTime() + "url.png", "UTF-8"));
+        OutputStream out = response.getOutputStream();
+        byte[] buf = new byte[1024];
+        if (destUrl != null) {
+            BufferedInputStream br = bis;
+            int len = 0;
+            while ((len = br.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            br.close();
+        }
+        out.flush();
+        out.close();
+    }
+
+    /**
+     * 二维码解析
+     *
+     * @param request
+     * @param model
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("parseQRCode")
+    @ResponseBody
+    public JsonResult ParseQRCode(HttpServletRequest request, ModelMap model,
+                                  @RequestParam(value = "file", required = false) CommonsMultipartFile logoFile) throws IOException {
+
+        logger.info("ParseQRCode - {}", "开始了");
+
+        StringBuffer url = request.getRequestURL();
+        String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append(request.getContextPath()).append("/").toString();
+
+        String path = request.getSession().getServletContext().getRealPath("upload");
+
+        String logoFileName = logoFile.getOriginalFilename();
+        File targetFile = new File(path, logoFileName);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        logoFile.transferTo(targetFile);
+
+        String text = ZXingCodeUtil.parseQRCode(targetFile);
+
+        targetFile.delete();
+
+        logger.info("解析结果 - {}", text);
+
+        JsonResult jsonResult = new JsonResult();
+        Map data = new HashMap<String, String>();
+        data.put("text", text);
         jsonResult.setData(data);
         jsonResult.setMeg("生成成功");
         jsonResult.setRes(1);
