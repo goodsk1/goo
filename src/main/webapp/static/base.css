@@ -107,13 +107,13 @@ a.text_tips:hover {
 }
 
 .btn_tips {
-    background: #f96363;
+    background: #4dcaf9;
 }
 
 .btn_default,
 .btn_success,
 .btn_tips {
-    color: #fff;
+    color: #4dcaf9;
 }
 
 .btn_hot {
@@ -125,7 +125,7 @@ a.text_tips:hover {
 }
 
 .btn_default {
-    background: #fc8e5d;
+    background: #14c8fc;
 }
 
 .btn_hot,

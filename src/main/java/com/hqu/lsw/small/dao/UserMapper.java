@@ -1,5 +1,7 @@
 package com.hqu.lsw.small.dao;
 
+import com.hqu.lsw.pojo.Address;
+import com.hqu.lsw.pojo.User;
 import com.hqu.lsw.pojo.bo.UserBO;
 import com.hqu.lsw.pojo.dto.UserDTO;
 import com.hqu.lsw.pojo.entity.UserDO;
@@ -16,6 +18,7 @@ public interface UserMapper {
 
     /**
      * 根据用户名和密码查询用户
+     *
      * @param map
      * @return
      */
@@ -23,6 +26,7 @@ public interface UserMapper {
 
     /**
      * 分页查询用户
+     *
      * @param map
      * @return
      */
@@ -30,6 +34,7 @@ public interface UserMapper {
 
     /**
      * 获取用户数量
+     *
      * @param map
      * @return
      */
@@ -38,6 +43,7 @@ public interface UserMapper {
 
     /**
      *删除用户
+     *
      * @param userId
      * @return
      */
@@ -45,6 +51,7 @@ public interface UserMapper {
 
     /**
      * 查询用户
+     *
      * @param id
      * @return
      */
@@ -52,9 +59,35 @@ public interface UserMapper {
 
     /**
      * 更新用户
+     *
      * @param user
      * @return
      */
     int updateByPrimaryKeySelective(UserDO user);
 
+    /**
+     * 根据用户注册帐号获取用户的登录信息
+     *
+     * @param: account 用户帐号
+     * @return: UserDTO 用户的登录信息
+     * */
+    UserDTO getLoginUserByName(String account);
+
+    /**
+     * 新增用户
+     *
+     * @param record
+     * @return
+     */
+    int insertUser(User record);
+
+    /**
+     * 根据用户id 获取用户信息
+     *
+     * @param id
+     * @return
+     */
+    UserDTO getUserInfo(Integer id);
+
+    List<Address> getAddressList(Integer id);
 }

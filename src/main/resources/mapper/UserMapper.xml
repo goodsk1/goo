@@ -83,5 +83,73 @@
         </set>
         where id = #{id}
     </update>
+
+    <!--查询用户登录注册相关信息-->
+    <select id="getLoginUserByName" parameterType="java.lang.String" resultType="com.hqu.lsw.pojo.dto.UserDTO">
+      select id,
+      phone,
+      login_name as loginName
+      from t_user
+      where login_name = #{loginName,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertUser" parameterType="com.hqu.lsw.pojo.User">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="loginName != null">
+                login_name,
+            </if>
+            <if test="trueName != null">
+                true_name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="loginPwd != null">
+                login_pwd,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="loginName != null">
+                #{login_name,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=BIT},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPwd != null">
+                #{login_pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+        </trim>
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getUserInfo" parameterType="java.lang.Integer" resultType="com.hqu.lsw.pojo.dto.UserDTO">
+      select id  id,login_name  loginName,login_pwd  loginPwd, true_name  trueName,phone  phone,address  address
+      from t_user
+      where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAddressList" parameterType="java.lang.Integer" resultType="com.hqu.lsw.pojo.Address">
+        select *
+        from t_address
+        where user_id=#{id,jdbcType=INTEGER}
+    </select>
 </mapper>
 

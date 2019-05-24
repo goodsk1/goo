@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqu.lsw.small.dao.SnackMapper">
+
+    <resultMap id="Ma" type="com.hqu.lsw.pojo.dto.CategoryDTO">
+        <result column="category_id"  property="id" />
+        <result column="category_name"  property="name" />
+        <collection ofType="com.hqu.lsw.pojo.dto.SnackDTO" property="snackDTOS">
+            <result column="id" property="id"></result>
+            <result column="s_name" property="sName"></result>
+            <result column="s_price" property="sPrice"></result>
+            <result column="s_pictureUrl" property="sPictureUrl"></result>
+            <result column="s_score" property="sSCore"></result>
+            <result column="s_dese" property="sDese"></result>
+        </collection>
+    </resultMap>
+    <select id="getSnackList" resultMap="Ma">
+        select
+        s.id,s.s_name,s.s_price,s.s_pictureUrl,s.s_score,s.s_dese c.category_id,c.category_name
+            from t_category c LEFT JOIN t_snackinfo s on c.id = s.category_id
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
